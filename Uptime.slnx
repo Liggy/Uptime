@@ -4,5 +4,7 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="Uptime.vcxproj" Id="abfdbbcd-5adb-4a2e-a242-4aa7eeb9915e" />
+  <Project Path="Uptime/Uptime.vcxproj" Id="abfdbbcd-5adb-4a2e-a242-4aa7eeb9915e" />
+  <Project Path="Uptime_de-DE/Uptime_de-DE.vcxproj" Id="7211b136-1e5a-423e-8467-128077f66782" />
+  <Project Path="Uptime_en-US/Uptime_en-US.vcxproj" Id="578ffba8-7662-49cf-9521-847ef545ace5" />
 </Solution>

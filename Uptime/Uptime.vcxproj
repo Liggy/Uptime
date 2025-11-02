@@ -194,12 +194,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="I18N.cpp" />
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="Uptime.cpp" />
     <ClCompile Include="UptimeEvaluate.cpp" />
     <ClCompile Include="UptimeInternal.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="I18N.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Uptime.h" />

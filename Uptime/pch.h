@@ -7,3 +7,5 @@
 
 #include <tchar.h>
 #include <iostream>
+
+#include "resource.h"

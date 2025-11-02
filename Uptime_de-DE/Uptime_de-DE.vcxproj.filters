@@ -18,6 +18,12 @@
     <ClInclude Include="pch.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="..\Uptime\resource.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">

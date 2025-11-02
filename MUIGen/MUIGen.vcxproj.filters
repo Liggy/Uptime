@@ -14,28 +14,4 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="dllmain.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Uptime_en-US\pch.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\Uptime_en-US\pch.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Uptime\resource.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="Uptime_en-US.rc">
-      <Filter>Ressourcendateien</Filter>
-    </ResourceCompile>
-  </ItemGroup>
 </Project>

@@ -27,6 +27,9 @@
     <ClCompile Include="pch.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="I18N.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Uptime.h">
@@ -42,6 +45,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="pch.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="I18N.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

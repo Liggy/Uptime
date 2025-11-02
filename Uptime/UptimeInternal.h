@@ -1,7 +1,6 @@
 #pragma once
 
-
-struct UPTIME_DATA
+class UPTIME_DATA
 {
 private:
 	LPTSTR ComputerName;

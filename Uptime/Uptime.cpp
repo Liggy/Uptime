@@ -1,47 +1,40 @@
 #include "pch.h"
+#include "I18N.h"
 #include "Uptime.h"
 #include "UptimeEvaluate.h"
 
 
-//#define SUFFICIENTLY_LARGE_STRING_BUFFER (MAX_PATH*2)
-//#define USER_CONFIGURATION_STRING_BUFFER (((LOCALE_NAME_MAX_LENGTH+1)*5)+1)
-//#define SUFFICIENTLY_LARGE_ERROR_BUFFER (1024*2)
-//#define HELLO_MODULE_CONTRIVED_FILE_PATH  (L"Uptime.dll")
-
 #ifdef UNICODE
 #define t_cout wcout
+#define t_cin wcin
+#define t_cerr wcerr
 #else
 #define t_cout cout
+#define t_cin cin
+#define t_cerr cerr
 #endif
 
-static int MessageCallback(const TCHAR* format, ...)
-{
-    int rc = 0;
-    va_list arg_ptr;
 
-    va_start(arg_ptr, format);
-    _vtprintf_p(format, arg_ptr);
+static int MessageCallback(const TCHAR* format, va_list arg_ptr)
+{
+    return _vtprintf_p(format, arg_ptr);
 }
 
 
-static void HowTo()
+static void HowTo(I18N* i18n)
 {
-    std::t_cout
-        << _T("Usage: Uptime [server] {/s} {/?}\n\n")
-        << _T("       server  optionally connect to remote machine\n")
-        << _T("       /s      Show all available startup and shutdown times\n")
-        << _T("       / ? Show this help\n");
-}
-
-static void InitI18N()
-{
-    HMODULE i18nModule = LoadLibraryEx(_T("Uptime.dll"), NULL, LOAD_LIBRARY_AS_IMAGE_RESOURCE | LOAD_LIBRARY_AS_DATAFILE);
-
+    i18n->ProcessMessage(IDS_HOWTO);
 }
 
 
 int main(int argc, char* argv[])
 {
+    DWORD langCount = 1;
+    const WCHAR lang[] = { L"en-US\0" };
+//For debugging purposes only
+//    SetThreadPreferredUILanguages(MUI_LANGUAGE_NAME, lang, &langCount);
+
+    I18N i18n(&MessageCallback);
     bool DoList = false;
     bool DoHelp = false;
     char* RemoteHost = nullptr;
@@ -80,7 +73,7 @@ int main(int argc, char* argv[])
 
     if (DoHelp)
     {
-        HowTo();
+        HowTo(&i18n);
     }
     else if (DoList)
     {
@@ -90,7 +83,8 @@ int main(int argc, char* argv[])
     else
     {
 // Just show last startup
-        std::t_cout << _T("Host has been up for: w day(s), x hour(s), y minute(s), z second(s)\n");
+        int days = 0, hours = 4, minutes = 6, seconds = 1;
+        i18n.ProcessMessage(IDS_UP_SINCE, days, hours, minutes, seconds);
     }
     return 0;
 }

@@ -203,7 +203,6 @@
   <ItemGroup>
     <ClInclude Include="I18N.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="resource.h" />
     <ClInclude Include="Uptime.h" />
     <ClInclude Include="UptimeEvaluate.h" />
     <ClInclude Include="UptimeInternal.h" />

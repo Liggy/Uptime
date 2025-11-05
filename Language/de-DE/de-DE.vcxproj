@@ -32,6 +32,7 @@
     <ProjectGuid>{7211b136-1e5a-423e-8467-128077f66782}</ProjectGuid>
     <RootNamespace>UPTIMEDEDE</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>de-DE</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -137,8 +138,13 @@
       <Culture>0x0407</Culture>
     </ResourceCompile>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>if not exist "$(TargetDir)$(ProjectName)" mkdir "$(TargetDir)$(ProjectName)"
+if exist "$(TargetDir)$(Projectname).discard" del /f /q "$(TargetDir)$(Projectname).discard"
+if exist "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui" del /f /q "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
+"$(UCRTContentRoot)bin\$(TargetPlatformVersion)\$(PlatformShortName)\muirct.exe" -q "$(ProjectDir)..\DoReverseMuiLoc.rcconfig" -x 0x0407 -g 0x0409 "$(TargetDir)$(TargetFileName)" "$(TargetDir)$(Projectname).discard" "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
+"$(UCRTContentRoot)bin\$(TargetPlatformVersion)\$(PlatformShortName)\muirct.exe" -c "$(TargetDir)$(Solutionname).dll" -e "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
+del /f /q "$(TargetDir)$(Projectname).discard"</Command>
+      <Message>Split Language</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -165,8 +171,13 @@
       <Culture>0x0407</Culture>
     </ResourceCompile>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>if not exist "$(TargetDir)$(ProjectName)" mkdir "$(TargetDir)$(ProjectName)"
+if exist "$(TargetDir)$(Projectname).discard" del /f /q "$(TargetDir)$(Projectname).discard"
+if exist "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui" del /f /q "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
+"$(UCRTContentRoot)bin\$(TargetPlatformVersion)\$(PlatformShortName)\muirct.exe" -q "$(ProjectDir)..\DoReverseMuiLoc.rcconfig" -x 0x0407 -g 0x0409 "$(TargetDir)$(TargetFileName)" "$(TargetDir)$(Projectname).discard" "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
+"$(UCRTContentRoot)bin\$(TargetPlatformVersion)\$(PlatformShortName)\muirct.exe" -c "$(TargetDir)$(Solutionname).dll" -e "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
+del /f /q "$(TargetDir)$(Projectname).discard"</Command>
+      <Message>Split Language</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -191,8 +202,13 @@
       <Culture>0x0407</Culture>
     </ResourceCompile>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>if not exist "$(TargetDir)$(ProjectName)" mkdir "$(TargetDir)$(ProjectName)"
+if exist "$(TargetDir)$(Projectname).discard" del /f /q "$(TargetDir)$(Projectname).discard"
+if exist "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui" del /f /q "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
+"$(UCRTContentRoot)bin\$(TargetPlatformVersion)\$(PlatformShortName)\muirct.exe" -q "$(ProjectDir)..\DoReverseMuiLoc.rcconfig" -x 0x0407 -g 0x0409 "$(TargetDir)$(TargetFileName)" "$(TargetDir)$(Projectname).discard" "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
+"$(UCRTContentRoot)bin\$(TargetPlatformVersion)\$(PlatformShortName)\muirct.exe" -c "$(TargetDir)$(Solutionname).dll" -e "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
+del /f /q "$(TargetDir)$(Projectname).discard"</Command>
+      <Message>Split Language</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
@@ -217,8 +233,13 @@
       <Culture>0x0407</Culture>
     </ResourceCompile>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>if not exist "$(TargetDir)$(ProjectName)" mkdir "$(TargetDir)$(ProjectName)"
+if exist "$(TargetDir)$(Projectname).discard" del /f /q "$(TargetDir)$(Projectname).discard"
+if exist "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui" del /f /q "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
+"$(UCRTContentRoot)bin\$(TargetPlatformVersion)\$(PlatformShortName)\muirct.exe" -q "$(ProjectDir)..\DoReverseMuiLoc.rcconfig" -x 0x0407 -g 0x0409 "$(TargetDir)$(TargetFileName)" "$(TargetDir)$(Projectname).discard" "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
+"$(UCRTContentRoot)bin\$(TargetPlatformVersion)\$(PlatformShortName)\muirct.exe" -c "$(TargetDir)$(Solutionname).dll" -e "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
+del /f /q "$(TargetDir)$(Projectname).discard"</Command>
+      <Message>Split Language</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -245,8 +266,13 @@
       <Culture>0x0407</Culture>
     </ResourceCompile>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>if not exist "$(TargetDir)$(ProjectName)" mkdir "$(TargetDir)$(ProjectName)"
+if exist "$(TargetDir)$(Projectname).discard" del /f /q "$(TargetDir)$(Projectname).discard"
+if exist "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui" del /f /q "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
+"$(UCRTContentRoot)bin\$(TargetPlatformVersion)\$(PlatformShortName)\muirct.exe" -q "$(ProjectDir)..\DoReverseMuiLoc.rcconfig" -x 0x0407 -g 0x0409 "$(TargetDir)$(TargetFileName)" "$(TargetDir)$(Projectname).discard" "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
+"$(UCRTContentRoot)bin\$(TargetPlatformVersion)\$(PlatformShortName)\muirct.exe" -c "$(TargetDir)$(Solutionname).dll" -e "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
+del /f /q "$(TargetDir)$(Projectname).discard"</Command>
+      <Message>Split Language</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
@@ -273,14 +299,18 @@
       <Culture>0x0407</Culture>
     </ResourceCompile>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>if not exist "$(TargetDir)$(ProjectName)" mkdir "$(TargetDir)$(ProjectName)"
+if exist "$(TargetDir)$(Projectname).discard" del /f /q "$(TargetDir)$(Projectname).discard"
+if exist "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui" del /f /q "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
+"$(UCRTContentRoot)bin\$(TargetPlatformVersion)\$(PlatformShortName)\muirct.exe" -q "$(ProjectDir)..\DoReverseMuiLoc.rcconfig" -x 0x0407 -g 0x0409 "$(TargetDir)$(TargetFileName)" "$(TargetDir)$(Projectname).discard" "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
+"$(UCRTContentRoot)bin\$(TargetPlatformVersion)\$(PlatformShortName)\muirct.exe" -c "$(TargetDir)$(Solutionname).dll" -e "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
+del /f /q "$(TargetDir)$(Projectname).discard"</Command>
+      <Message>Split Language</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\Uptime\resource.h" />
+    <ClInclude Include="..\..\Common\resource.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
@@ -294,7 +324,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Uptime_de-DE.rc" />
+    <ResourceCompile Include="de-DE.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

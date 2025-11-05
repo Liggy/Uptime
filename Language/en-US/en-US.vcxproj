@@ -32,6 +32,7 @@
     <ProjectGuid>{578ffba8-7662-49cf-9521-847ef545ace5}</ProjectGuid>
     <RootNamespace>UptimeENUS</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>en-US</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -131,8 +132,12 @@
       <EnableUAC>false</EnableUAC>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>if not exist "$(TargetDir)$(ProjectName)" mkdir "$(TargetDir)$(ProjectName)"
+if exist "$(TargetDir)$(Solutionname).dll" del /f /q "$(TargetDir)$(Solutionname).dll"
+if exist "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui" del /f /q "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
+"$(UCRTContentRoot)bin\$(TargetPlatformVersion)\$(PlatformShortName)\muirct.exe" -q "$(ProjectDir)..\DoReverseMuiLoc.rcconfig" -x 0x0409 -g 0x0409 "$(TargetDir)$(TargetFileName)" "$(TargetDir)$(Solutionname).dll" "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
+</Command>
+      <Message>Split Language</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -153,8 +158,12 @@
       <EnableUAC>false</EnableUAC>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>if not exist "$(TargetDir)$(ProjectName)" mkdir "$(TargetDir)$(ProjectName)"
+if exist "$(TargetDir)$(Solutionname).dll" del /f /q "$(TargetDir)$(Solutionname).dll"
+if exist "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui" del /f /q "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
+"$(UCRTContentRoot)bin\$(TargetPlatformVersion)\$(PlatformShortName)\muirct.exe" -q "$(ProjectDir)..\DoReverseMuiLoc.rcconfig" -x 0x0409 -g 0x0409 "$(TargetDir)$(TargetFileName)" "$(TargetDir)$(Solutionname).dll" "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
+</Command>
+      <Message>Split Language</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -173,8 +182,12 @@
       <EnableUAC>false</EnableUAC>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>if not exist "$(TargetDir)$(ProjectName)" mkdir "$(TargetDir)$(ProjectName)"
+if exist "$(TargetDir)$(Solutionname).dll" del /f /q "$(TargetDir)$(Solutionname).dll"
+if exist "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui" del /f /q "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
+"$(UCRTContentRoot)bin\$(TargetPlatformVersion)\$(PlatformShortName)\muirct.exe" -q "$(ProjectDir)..\DoReverseMuiLoc.rcconfig" -x 0x0409 -g 0x0409 "$(TargetDir)$(TargetFileName)" "$(TargetDir)$(Solutionname).dll" "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
+</Command>
+      <Message>Split Language</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
@@ -193,8 +206,12 @@
       <EnableUAC>false</EnableUAC>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>if not exist "$(TargetDir)$(ProjectName)" mkdir "$(TargetDir)$(ProjectName)"
+if exist "$(TargetDir)$(Solutionname).dll" del /f /q "$(TargetDir)$(Solutionname).dll"
+if exist "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui" del /f /q "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
+"$(UCRTContentRoot)bin\$(TargetPlatformVersion)\$(PlatformShortName)\muirct.exe" -q "$(ProjectDir)..\DoReverseMuiLoc.rcconfig" -x 0x0409 -g 0x0409 "$(TargetDir)$(TargetFileName)" "$(TargetDir)$(Solutionname).dll" "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
+</Command>
+      <Message>Split Language</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -215,8 +232,12 @@
       <EnableUAC>false</EnableUAC>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>if not exist "$(TargetDir)$(ProjectName)" mkdir "$(TargetDir)$(ProjectName)"
+if exist "$(TargetDir)$(Solutionname).dll" del /f /q "$(TargetDir)$(Solutionname).dll"
+if exist "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui" del /f /q "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
+"$(UCRTContentRoot)bin\$(TargetPlatformVersion)\$(PlatformShortName)\muirct.exe" -q "$(ProjectDir)..\DoReverseMuiLoc.rcconfig" -x 0x0409 -g 0x0409 "$(TargetDir)$(TargetFileName)" "$(TargetDir)$(Solutionname).dll" "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
+</Command>
+      <Message>Split Language</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
@@ -237,12 +258,16 @@
       <EnableUAC>false</EnableUAC>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>if not exist "$(TargetDir)$(ProjectName)" mkdir "$(TargetDir)$(ProjectName)"
+if exist "$(TargetDir)$(Solutionname).dll" del /f /q "$(TargetDir)$(Solutionname).dll"
+if exist "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui" del /f /q "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
+"$(UCRTContentRoot)bin\$(TargetPlatformVersion)\$(PlatformShortName)\muirct.exe" -q "$(ProjectDir)..\DoReverseMuiLoc.rcconfig" -x 0x0409 -g 0x0409 "$(TargetDir)$(TargetFileName)" "$(TargetDir)$(Solutionname).dll" "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
+</Command>
+      <Message>Split Language</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\UPTIME_en-US\pch.cpp">
+    <ClCompile Include="..\en-US\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Create</PrecompiledHeader>
@@ -253,12 +278,11 @@
     <ClCompile Include="dllmain.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Uptime\resource.h" />
-    <ClInclude Include="..\UPTIME_en-US\pch.h" />
-    <ClInclude Include="resource.h" />
+    <ClInclude Include="..\..\Common\resource.h" />
+    <ClInclude Include="..\en-US\pch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Uptime_en-US.rc" />
+    <ResourceCompile Include="en-US.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

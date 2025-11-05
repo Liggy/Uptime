@@ -1,7 +1,4 @@
 //{{NO_DEPENDENCIES}}
-// Von Microsoft Visual C++ generierte Includedatei.
-// Verwendet durch Uptime.rc
-//
 #define IDS_HOWTO                       101
 #define IDS_UP_SINCE                    102
 

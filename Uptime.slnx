@@ -4,7 +4,11 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
+  <Folder Name="/Common/">
+    <File Path="Common/resource.h" />
+  </Folder>
   <Folder Name="/Language/">
+    <File Path="Language/DoReverseMuiLoc.rcconfig" />
     <Project Path="Language/de-DE/de-DE.vcxproj" Id="7211b136-1e5a-423e-8467-128077f66782">
       <BuildDependency Project="Language/en-US/en-US.vcxproj" />
     </Project>

@@ -7,12 +7,18 @@
   <Folder Name="/Common/">
     <File Path="Common/resource.h" />
   </Folder>
+  <Folder Name="/Documentation/">
+    <File Path="README.md" />
+  </Folder>
   <Folder Name="/Language/">
     <File Path="Language/DoReverseMuiLoc.rcconfig" />
     <Project Path="Language/de-DE/de-DE.vcxproj" Id="7211b136-1e5a-423e-8467-128077f66782">
-      <BuildDependency Project="Language/en-US/en-US.vcxproj" />
+      <BuildDependency Project="Language/Neutral/Neutral.vcxproj" />
     </Project>
-    <Project Path="Language/en-US/en-US.vcxproj" Id="578ffba8-7662-49cf-9521-847ef545ace5" />
+    <Project Path="Language/en-US/en-US.vcxproj" Id="578ffba8-7662-49cf-9521-847ef545ace5">
+      <BuildDependency Project="Language/Neutral/Neutral.vcxproj" />
+    </Project>
+    <Project Path="Language/Neutral/Neutral.vcxproj" Id="ecc1a12c-0f14-4bf1-91b9-70b7098bda6d" />
   </Folder>
   <Project Path="Uptime/Uptime.vcxproj" Id="abfdbbcd-5adb-4a2e-a242-4aa7eeb9915e" />
 </Solution>

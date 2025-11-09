@@ -311,6 +311,7 @@ del /f /q "$(TargetDir)$(Projectname).discard"</Command>
   <ItemGroup>
     <ClInclude Include="..\..\Common\resource.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />

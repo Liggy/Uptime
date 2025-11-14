@@ -31,6 +31,7 @@ int main(int argc, char* argv[])
 {
     DWORD langCount = 1;
     const WCHAR lang[] = { L"en-US\0" };
+    ::SetConsoleOutputCP(1250);
 //For debugging purposes only
 //    SetThreadPreferredUILanguages(MUI_LANGUAGE_NAME, lang, &langCount);
 

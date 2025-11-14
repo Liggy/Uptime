@@ -187,7 +187,7 @@ if exist "$(TargetDir)$(Solutionname).dll" del /f /q "$(TargetDir)$(Solutionname
 if exist "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui" del /f /q "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
 "$(UCRTContentRoot)bin\$(TargetPlatformVersion)\$(PlatformShortName)\muirct.exe" -q "$(ProjectDir)..\DoReverseMuiLoc.rcconfig" -x 0x0400 -g 0x0409 "$(TargetDir)$(TargetFileName)" "$(TargetDir)$(Solutionname).dll" "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
 </Command>
-      <Message>Split Language</Message>
+      <Message>Split Language $(ProjectName)</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
@@ -278,7 +278,6 @@ if exist "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui" del /f /q "$(Targe
     <ClCompile Include="dllmain.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Common\resource.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>

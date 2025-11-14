@@ -135,9 +135,9 @@
       <Command>if not exist "$(TargetDir)$(ProjectName)" mkdir "$(TargetDir)$(ProjectName)"
 if exist "$(TargetDir)$(Solutionname).dll" del /f /q "$(TargetDir)$(Solutionname).dll"
 if exist "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui" del /f /q "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
-"$(UCRTContentRoot)bin\$(TargetPlatformVersion)\$(PlatformShortName)\muirct.exe" -q "$(ProjectDir)..\DoReverseMuiLoc.rcconfig" -x 0x0400 -g 0x0409 "$(TargetDir)$(TargetFileName)" "$(TargetDir)$(Solutionname).dll" "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
+"muirct.exe" -q "$(ProjectDir)..\DoReverseMuiLoc.rcconfig" -x 0x0400 -g 0x0409 "$(TargetDir)$(TargetFileName)" "$(TargetDir)$(Solutionname).dll" "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
 </Command>
-      <Message>Split Language</Message>
+      <Message>Split Language $(ProjectName)</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -161,9 +161,9 @@ if exist "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui" del /f /q "$(Targe
       <Command>if not exist "$(TargetDir)$(ProjectName)" mkdir "$(TargetDir)$(ProjectName)"
 if exist "$(TargetDir)$(Solutionname).dll" del /f /q "$(TargetDir)$(Solutionname).dll"
 if exist "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui" del /f /q "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
-"$(UCRTContentRoot)bin\$(TargetPlatformVersion)\$(PlatformShortName)\muirct.exe" -q "$(ProjectDir)..\DoReverseMuiLoc.rcconfig" -x 0x0400 -g 0x0409 "$(TargetDir)$(TargetFileName)" "$(TargetDir)$(Solutionname).dll" "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
+"muirct.exe" -q "$(ProjectDir)..\DoReverseMuiLoc.rcconfig" -x 0x0400 -g 0x0409 "$(TargetDir)$(TargetFileName)" "$(TargetDir)$(Solutionname).dll" "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
 </Command>
-      <Message>Split Language</Message>
+      <Message>Split Language $(ProjectName)</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -185,7 +185,7 @@ if exist "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui" del /f /q "$(Targe
       <Command>if not exist "$(TargetDir)$(ProjectName)" mkdir "$(TargetDir)$(ProjectName)"
 if exist "$(TargetDir)$(Solutionname).dll" del /f /q "$(TargetDir)$(Solutionname).dll"
 if exist "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui" del /f /q "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
-"$(UCRTContentRoot)bin\$(TargetPlatformVersion)\$(PlatformShortName)\muirct.exe" -q "$(ProjectDir)..\DoReverseMuiLoc.rcconfig" -x 0x0400 -g 0x0409 "$(TargetDir)$(TargetFileName)" "$(TargetDir)$(Solutionname).dll" "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
+"muirct.exe" -q "$(ProjectDir)..\DoReverseMuiLoc.rcconfig" -x 0x0400 -g 0x0409 "$(TargetDir)$(TargetFileName)" "$(TargetDir)$(Solutionname).dll" "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
 </Command>
       <Message>Split Language $(ProjectName)</Message>
     </PostBuildEvent>
@@ -209,9 +209,9 @@ if exist "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui" del /f /q "$(Targe
       <Command>if not exist "$(TargetDir)$(ProjectName)" mkdir "$(TargetDir)$(ProjectName)"
 if exist "$(TargetDir)$(Solutionname).dll" del /f /q "$(TargetDir)$(Solutionname).dll"
 if exist "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui" del /f /q "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
-"$(UCRTContentRoot)bin\$(TargetPlatformVersion)\$(PlatformShortName)\muirct.exe" -q "$(ProjectDir)..\DoReverseMuiLoc.rcconfig" -x 0x0400 -g 0x0409 "$(TargetDir)$(TargetFileName)" "$(TargetDir)$(Solutionname).dll" "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
+"muirct.exe" -q "$(ProjectDir)..\DoReverseMuiLoc.rcconfig" -x 0x0400 -g 0x0409 "$(TargetDir)$(TargetFileName)" "$(TargetDir)$(Solutionname).dll" "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
 </Command>
-      <Message>Split Language</Message>
+      <Message>Split Language $(ProjectName)</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -235,9 +235,9 @@ if exist "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui" del /f /q "$(Targe
       <Command>if not exist "$(TargetDir)$(ProjectName)" mkdir "$(TargetDir)$(ProjectName)"
 if exist "$(TargetDir)$(Solutionname).dll" del /f /q "$(TargetDir)$(Solutionname).dll"
 if exist "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui" del /f /q "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
-"$(UCRTContentRoot)bin\$(TargetPlatformVersion)\$(PlatformShortName)\muirct.exe" -q "$(ProjectDir)..\DoReverseMuiLoc.rcconfig" -x 0x0400 -g 0x0409 "$(TargetDir)$(TargetFileName)" "$(TargetDir)$(Solutionname).dll" "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
+"muirct.exe" -q "$(ProjectDir)..\DoReverseMuiLoc.rcconfig" -x 0x0400 -g 0x0409 "$(TargetDir)$(TargetFileName)" "$(TargetDir)$(Solutionname).dll" "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
 </Command>
-      <Message>Split Language</Message>
+      <Message>Split Language $(ProjectName)</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
@@ -261,9 +261,9 @@ if exist "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui" del /f /q "$(Targe
       <Command>if not exist "$(TargetDir)$(ProjectName)" mkdir "$(TargetDir)$(ProjectName)"
 if exist "$(TargetDir)$(Solutionname).dll" del /f /q "$(TargetDir)$(Solutionname).dll"
 if exist "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui" del /f /q "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
-"$(UCRTContentRoot)bin\$(TargetPlatformVersion)\$(PlatformShortName)\muirct.exe" -q "$(ProjectDir)..\DoReverseMuiLoc.rcconfig" -x 0x0400 -g 0x0409 "$(TargetDir)$(TargetFileName)" "$(TargetDir)$(Solutionname).dll" "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
+"muirct.exe" -q "$(ProjectDir)..\DoReverseMuiLoc.rcconfig" -x 0x0400 -g 0x0409 "$(TargetDir)$(TargetFileName)" "$(TargetDir)$(Solutionname).dll" "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
 </Command>
-      <Message>Split Language</Message>
+      <Message>Split Language $(ProjectName)</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

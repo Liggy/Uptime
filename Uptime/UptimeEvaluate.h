@@ -9,4 +9,4 @@ public:
 	~Uptime();
 }; 
 
-int RetrieveUptime(const char hostarg[] /*, int since*/);
+DWORD RetrieveUptime(const char hostarg[]);

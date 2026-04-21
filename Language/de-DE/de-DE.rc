@@ -94,9 +94,10 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_HOWTO               "Aufruf: Uptime [server] {/s} {/?}\n\n        server  optional mit entfernter Maschine verbinden\n        /s      Alle Start- und Stop-Zeiten anzeigen\n        /?      Diese Hilfe anzeigen\n"
-    IDS_UP_SINCE            "Rechner wurde gestartet vor: %1$d Tag(en), %2$d Stunde(n), %3$d Minute(n), %4$d Sekunde(n)\n"
-    IDS_UPTIME_REPORT       "Uptime Bericht für: %1$s\n"
+    IDS_HOWTO               "Aufruf: Uptime [server] {/s} {/?}\n\n        server  optional mit entfernter Maschine verbinden\n        /s      Alle Start- und Stop-Zeiten anzeigen\n        /a      Absolute Zeit anzeigen (nicht mit /s)\n        /?      Diese Hilfe anzeigen\n"
+    IDS_UP_SINCE            "Rechner wurde gestartet vor %1$d Tag(en), %2$d Stunde(n), %3$d Minute(n), %4$d Sekunde(n)\n"
+    IDS_UP_AT               "Rechner wurde gestartet am %1$s um %2$s\n"
+    IDS_UPTIME_REPORT       "Uptime Bericht fï¿½r: %1$s\n"
     IDS_CURRENT_OS          "Aktuelles Betriebssystem: %1$s\n"
     IDS_TIME_ZONE           "Zeitzone: %1%s\n"
     IDS_EXECUTION_TIMESTAMP "Systemereignisse mit Stand %1$s:\n"

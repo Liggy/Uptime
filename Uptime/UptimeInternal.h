@@ -4,14 +4,24 @@ class UPTIME_DATA
 {
 private:
 	LPTSTR ComputerName;
-	TIME_ZONE_INFORMATION LocalTimeZone;
+
+	HANDLE hEventLog;
+	LPBYTE lpBuffer;
+	LPBYTE lpBufferCurrent;
+	DWORD dwBufferSize;
+	DWORD dwBytesRead;
+	bool bDirectionBackwards;
+
+	bool GetEventRecord();
 
 	bool GetLocalHostname();
-	bool GetLocalTimezone();
 
 public:
 	UPTIME_DATA();
 	~UPTIME_DATA();
 	
-	void RetrieveUptimeEvent(/*handle*/ /*, bool backwards*/);
+	bool OpenEventLog(bool bReadBackwards);
+	bool GetNextEvent();
+
+	const LPBYTE GetEventDetails() const;
 };

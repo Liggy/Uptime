@@ -15,15 +15,18 @@
 #endif
 
 
+static I18N i18n;
+
+
 static int MessageCallback(const TCHAR* format, va_list arg_ptr)
 {
     return _vtprintf_p(format, arg_ptr);
 }
 
 
-static void HowTo(I18N* i18n)
+static void HowTo()
 {
-    i18n->ProcessMessage(IDS_HOWTO);
+    i18n.ProcessMessage(IDS_HOWTO);
 }
 
 
@@ -57,13 +60,13 @@ static DWORD FileTimeToUnixTime(FILETIME filetime)
 }
 
 
-static int LastStartup(I18N* i18n, bool absolute)
+static int LastStartup(bool absolute)
 {
     DWORD Uptime = RetrieveUptime(nullptr);
     if (!Uptime)
     {
         // Error
-//        i18n->ProcessMessage();
+//        i18n.ProcessMessage();
         return 1;
     }
 
@@ -79,7 +82,7 @@ static int LastStartup(I18N* i18n, bool absolute)
         int hours = CurrentTime / 3600; CurrentTime %= 3600;
         int minutes = CurrentTime / 60; CurrentTime %= 60;
         int seconds = CurrentTime;
-        i18n->ProcessMessage(IDS_UP_SINCE, days, hours, minutes, seconds);
+        i18n.ProcessMessage(IDS_UP_SINCE, days, hours, minutes, seconds);
     }
     else
     {
@@ -102,14 +105,14 @@ static int LastStartup(I18N* i18n, bool absolute)
             TimeBuffer,
             0x100
         );
-        i18n->ProcessMessage(IDS_UP_AT, DateBuffer, TimeBuffer);
+        i18n.ProcessMessage(IDS_UP_AT, DateBuffer, TimeBuffer);
     }
 
 
     return 0;
 }
 
-static int ListAllEvents(I18N* i18n)
+static int ListAllEvents()
 {
     // List all related events
     std::t_cout << _T("Listing all events\n");
@@ -127,7 +130,7 @@ int main(int argc, char* argv[])
     SetThreadPreferredUILanguages(MUI_LANGUAGE_NAME, lang, &langCount);
 #endif
 
-    I18N i18n(&MessageCallback);
+    i18n.Init(&MessageCallback);
     bool DoList = false;
     bool DoHelp = false;
     bool DoAbsolute = false;
@@ -173,15 +176,15 @@ int main(int argc, char* argv[])
 
     if (DoHelp)
     {
-        HowTo(&i18n);
+        HowTo();
     }
     else if (DoList)
     {
-        ListAllEvents(&i18n);
+        ListAllEvents();
     }
     else
     {
-        LastStartup(&i18n, DoAbsolute);
+        LastStartup(DoAbsolute);
     }
     return 0;
 }

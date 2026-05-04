@@ -1,16 +1,27 @@
 #include "pch.h"
 #include "I18N.h"
 
+I18N::I18N()
+{
+	hResFile = nullptr;
+	hCallback = nullptr;
+}
+
 I18N::I18N(CallbackPrototype output)
 {
-	hResFile = LoadLibraryEx(_T("Uptime.dll"), NULL, LOAD_LIBRARY_AS_IMAGE_RESOURCE | LOAD_LIBRARY_AS_DATAFILE);
-	hCallback = output;
+	Init(output);
 }
 
 I18N::~I18N()
 {
 	if (hResFile)
 		FreeLibrary(hResFile);
+}
+
+void I18N::Init(CallbackPrototype output)
+{
+	hResFile = LoadLibraryEx(_T("Uptime.dll"), NULL, LOAD_LIBRARY_AS_IMAGE_RESOURCE | LOAD_LIBRARY_AS_DATAFILE);
+	hCallback = output;
 }
 
 int I18N::ProcessMessage(UINT uID, ...) const

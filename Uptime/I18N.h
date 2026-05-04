@@ -7,8 +7,11 @@ class I18N
 	CallbackPrototype hCallback;
 
 public:
-	I18N(CallbackPrototype);
+	I18N();
+	I18N(CallbackPrototype output);
 	~I18N();
+
+	void Init(CallbackPrototype output);
 
 
 	int ProcessMessage(UINT, ...) const;

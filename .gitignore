@@ -95,3 +95,6 @@ ipch/
 *.vsp
 *.vspx
 *.sap
+
+# Binary distributions
+[Dd]ist/

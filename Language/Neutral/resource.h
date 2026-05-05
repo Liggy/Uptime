@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
-// Microsoft Visual C++
-// Neutral.rc
+// Von Microsoft Visual C++ generierte Includedatei.
+// Verwendet durch Neutral.rc
 //
 #define IDS_HOWTO                       101
 #define IDS_UP_SINCE                    102
@@ -10,13 +10,19 @@
 #define IDS_TIME_ZONE                   106
 #define IDS_EXECUTION_TIMESTAMP         107
 #define IDS_UPTIME_LIST_HEADER          108
-#define IDS_EVENT_BOOT                  109
-#define IDS_EVENT_SHUTDOWN              110
-#define IDS_EVENT_CRASH                 111
+#define IDS_LIST_ENTRY                  109
+#define IDS_EVENT_STARTUP               110
+#define IDS_EVENT_SHUTDOWN              111
 #define IDS_EVENT_HIBERNATE             112
-#define IDS_EVENT_HYBRID_SHUTDOWN       113
-#define IDS_EVENT_WAKEUP                114
-#define IDS_CANNOT_OPEN_EVENTLOG        115
+#define IDS_EVENT_RESUME                113
+#define IDS_EVENT_SLEEP                 114
+#define IDS_EVENT_WAKEUP                115
+#define IDS_EVENT_UNKNOWN               116
+#define IDS_ERROR_RETRIEVING_DATA       117
+#define IDS_PRIOR_EVENT                 118
+#define IDS_INVALID_ORDER               119
+#define IDS_UPTIME                      120
+#define IDS_DOWNTIME                    121
 
 // Next default values for new objects
 // 

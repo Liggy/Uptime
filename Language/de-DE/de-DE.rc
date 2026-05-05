@@ -94,13 +94,27 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_HOWTO               "Aufruf: Uptime [server] {/s} {/?}\n\n        server  optional mit entfernter Maschine verbinden\n        /s      Alle Start- und Stop-Zeiten anzeigen\n        /a      Absolute Zeit anzeigen (nicht mit /s)\n        /?      Diese Hilfe anzeigen\n"
+    IDS_HOWTO               "Aufruf: Uptime [server] {/s} {/?}\n\n\tserver\toptional mit entfernter Maschine verbinden\n\t/s\tAlle Start- und Stop-Zeiten anzeigen\n\t/a\tAbsolute Zeit anzeigen (nicht mit /s)\n\t/?\tDiese Hilfe anzeigen\n"
     IDS_UP_SINCE            "Rechner wurde gestartet vor %1$d Tag(en), %2$d Stunde(n), %3$d Minute(n), %4$d Sekunde(n)\n"
-    IDS_UP_AT               "Rechner wurde gestartet am %1$s um %2$s\n"
-    IDS_UPTIME_REPORT       "Uptime Bericht fï¿½r: %1$s\n"
+    IDS_UP_AT               "Rechner wurde gestartet am %1$ls um %2$ls\n"
+    IDS_UPTIME_REPORT       "Uptime Bericht für: %1$s\n"
     IDS_CURRENT_OS          "Aktuelles Betriebssystem: %1$s\n"
-    IDS_TIME_ZONE           "Zeitzone: %1%s\n"
-    IDS_EXECUTION_TIMESTAMP "Systemereignisse mit Stand %1$s:\n"
+    IDS_TIME_ZONE           "Zeitzone: %1$ls\n"
+    IDS_EXECUTION_TIMESTAMP "Systemereignisse mit Stand %1$ls %2$ls:\n"
+    IDS_UPTIME_LIST_HEADER  "Datum:     Zeit:        Ereignis:            Kommentar:\n"
+    IDS_LIST_ENTRY          "%1$8s %2$11ls  %3$-20s %4$s\n"
+    IDS_EVENT_STARTUP       "Starten"
+    IDS_EVENT_SHUTDOWN      "Beenden"
+    IDS_EVENT_HIBERNATE     "Ruhezustand"
+    IDS_EVENT_RESUME        "Fortsetzen"
+    IDS_EVENT_SLEEP         "Schlafen"
+    IDS_EVENT_WAKEUP        "Aufwachen"
+    IDS_EVENT_UNKNOWN       "Unbekannt"
+    IDS_ERROR_RETRIEVING_DATA "Kann Uptime-Daten nicht ermitteln\n"
+    IDS_PRIOR_EVENT         "Bisherige %1$s: %2$dd %3$dh:%4$dm:%5$ds"
+    IDS_INVALID_ORDER       "Ungültige Ereignisreihenfolge"
+    IDS_UPTIME              "Laufzeit"
+    IDS_DOWNTIME            "Auszeit"
 END
 
 #endif    // Deutsch (Deutschland) resources

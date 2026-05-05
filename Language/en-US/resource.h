@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
-// Microsoft Visual C++
-// en-US.rc
+// Von Microsoft Visual C++ generierte Includedatei.
+// Verwendet durch en-US.rc
 //
 
 // Next default values for new objects

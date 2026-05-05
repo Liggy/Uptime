@@ -1,12 +1,6 @@
 #pragma once
 
-class Uptime
-{
-private:
+typedef bool (*UptimeListPrototype)(const DWORD, const WORD, const DWORD);
 
-public:
-	Uptime();
-	~Uptime();
-}; 
-
-DWORD RetrieveUptime(const char hostarg[]);
+DWORD RetrieveUptime(LPCTSTR lpHostarg = nullptr);
+DWORD RetrieveAllEvents(UptimeListPrototype cbCallbackFunction, LPCTSTR lpHostarg = nullptr);

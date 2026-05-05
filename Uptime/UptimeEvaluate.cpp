@@ -3,24 +3,45 @@
 #include "UptimeInternal.h"
 #include "UptimeEvaluate.h"
 
-static UPTIME_DATA UptimeData;
-
 
 // Return timestamp in case of success. 0 if not found
-DWORD RetrieveUptime(const char hostarg[])
+DWORD RetrieveUptime(LPCTSTR lpHostarg)
 {
+    UPTIME_DATA UptimeData;
     PEVENTLOGRECORD event;
 
-    if (UptimeData.OpenEventLog(true))
+    if (UptimeData.OpenEventLog(true, lpHostarg, EVENT_ID_STARTUP))
     {
         while (UptimeData.GetNextEvent())
         {
             event = (PEVENTLOGRECORD) UptimeData.GetEventDetails();
-            if ((event->EventID == 12) && (event->EventCategory == 1))
-                return event->TimeGenerated;
+//            if ((event->EventID == 12) && (event->EventCategory == 1))
+            return event->TimeGenerated;
         }
     }
 
     return 0;
 }
 
+
+DWORD RetrieveAllEvents(UptimeListPrototype cbCallbackFunction, LPCTSTR lpHostarg)
+{
+    UPTIME_DATA UptimeData;
+    PEVENTLOGRECORD hEvent;
+    
+//TODO: restrict events based on command line arguments
+    if (UptimeData.OpenEventLog(false, lpHostarg))
+    {
+        while (UptimeData.GetNextEvent())
+        {
+            hEvent = (PEVENTLOGRECORD) UptimeData.GetEventDetails();
+            if (!cbCallbackFunction(hEvent->EventID, hEvent->EventCategory, hEvent->TimeGenerated))
+                return 2;
+        }
+    }
+    else
+        return 1;
+
+    return 0;
+
+}

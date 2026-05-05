@@ -4,18 +4,8 @@
 #include "UptimeEvaluate.h"
 
 
-#ifdef UNICODE
-#define t_cout wcout
-#define t_cin wcin
-#define t_cerr wcerr
-#else
-#define t_cout cout
-#define t_cin cin
-#define t_cerr cerr
-#endif
-
-
 static I18N i18n;
+static WCHAR lpDateBuffer[0x100], lpTimeBuffer[0x100];
 
 
 static int MessageCallback(const TCHAR* format, va_list arg_ptr)
@@ -30,95 +20,187 @@ static void HowTo()
 }
 
 
-static SYSTEMTIME UnixTimeToSystemTime(DWORD unixtime)
+static SYSTEMTIME UnixTimeToSystemTime(DWORD UnixTime)
 {
-    SYSTEMTIME systemtime;
-    FILETIME filetime, localfiletime;
+    SYSTEMTIME SystemTime;
+    FILETIME FileTime{}, LocalFileTime{};
     LARGE_INTEGER li{};
 
-    li.QuadPart = ((LONGLONG) unixtime * 10000000) + 0x019DB1DED53E8000;
+    li.QuadPart = ((LONGLONG) UnixTime * 10000000) + 0x019DB1DED53E8000;
 
-    filetime.dwLowDateTime = li.LowPart;
-    filetime.dwHighDateTime = li.HighPart;
+    FileTime.dwLowDateTime = li.LowPart;
+    FileTime.dwHighDateTime = li.HighPart;
 
-    FileTimeToLocalFileTime(&filetime, &localfiletime);
-    FileTimeToSystemTime(&localfiletime, &systemtime);
+    ::FileTimeToLocalFileTime(&FileTime, &LocalFileTime);
+    ::FileTimeToSystemTime(&LocalFileTime, &SystemTime);
 
-    return systemtime;
+    return SystemTime;
 }
 
 
-static DWORD FileTimeToUnixTime(FILETIME filetime)
+static DWORD FileTimeToUnixTime(FILETIME FileTime)
 {
     LARGE_INTEGER li{};
 
-    li.LowPart = filetime.dwLowDateTime;
-    li.HighPart = filetime.dwHighDateTime;
+    li.LowPart = FileTime.dwLowDateTime;
+    li.HighPart = FileTime.dwHighDateTime;
 
     // Convert ticks into seconds since 1/1/1970
     return (DWORD) (LONGLONG) ((li.QuadPart - 0x019DB1DED53E8000) / 10000000);
 }
 
 
-static int LastStartup(bool absolute)
+static int LastStartup(LPCTSTR lpRemoteHost, bool bAbsolute)
 {
-    DWORD Uptime = RetrieveUptime(nullptr);
+    DWORD Uptime = RetrieveUptime(lpRemoteHost);
     if (!Uptime)
     {
         // Error
-//        i18n.ProcessMessage();
+        i18n.ProcessMessage(IDS_ERROR_RETRIEVING_DATA);
         return 1;
     }
 
     FILETIME ft;
-    GetSystemTimeAsFileTime(&ft);
+    ::GetSystemTimeAsFileTime(&ft);
     DWORD CurrentTime = FileTimeToUnixTime(ft);
 
-    if (!absolute)
+    if (!bAbsolute)
     {
         CurrentTime -= Uptime;
 
-        int days = CurrentTime / 86400; CurrentTime %= 86400;
-        int hours = CurrentTime / 3600; CurrentTime %= 3600;
-        int minutes = CurrentTime / 60; CurrentTime %= 60;
-        int seconds = CurrentTime;
+        DWORD days = CurrentTime / 86400; CurrentTime %= 86400;
+        DWORD hours = CurrentTime / 3600; CurrentTime %= 3600;
+        DWORD minutes = CurrentTime / 60; CurrentTime %= 60;
+        DWORD seconds = CurrentTime;
         i18n.ProcessMessage(IDS_UP_SINCE, days, hours, minutes, seconds);
     }
     else
     {
-        SYSTEMTIME st = UnixTimeToSystemTime(Uptime);
-        TCHAR DateBuffer[0x100], TimeBuffer[0x100];
-        GetDateFormatEx(
-            LOCALE_NAME_USER_DEFAULT,
-            DATE_SHORTDATE,
-            &st,
-            nullptr,
-            DateBuffer,
-            0x100,
-            nullptr
-        );
-        GetTimeFormatEx(
-            LOCALE_NAME_USER_DEFAULT,
-            0,
-            &st,
-            nullptr,
-            TimeBuffer,
-            0x100
-        );
-        i18n.ProcessMessage(IDS_UP_AT, DateBuffer, TimeBuffer);
+        SYSTEMTIME SystemTime = UnixTimeToSystemTime(Uptime);
+        ::GetDateFormatEx(LOCALE_NAME_USER_DEFAULT, DATE_SHORTDATE, &SystemTime, nullptr, lpDateBuffer, 0x100, nullptr);
+        ::GetTimeFormatEx(LOCALE_NAME_USER_DEFAULT, 0, &SystemTime, nullptr, lpTimeBuffer, 0x100);
+        i18n.ProcessMessage(IDS_UP_AT, lpDateBuffer, lpTimeBuffer);
     }
 
-
     return 0;
 }
 
-static int ListAllEvents()
+
+static bool ListAllCallback(DWORD dwEventID, WORD wEventCategory, DWORD dwTimestamp)
 {
-    // List all related events
-    std::t_cout << _T("Listing all events\n");
+    static DWORD dwLastTimestamp = 0;
+    static UINT uLastEventResourceID = 0;
+
+// First call
+    if (!dwLastTimestamp)
+    {
+
+        i18n.ProcessMessage(IDS_UPTIME_LIST_HEADER);
+        printf("---------- -----------  -------------------  -----------------------------------\n");
+    }
+
+    SYSTEMTIME SystemTime = UnixTimeToSystemTime(dwTimestamp);
+    ::GetDateFormatEx(LOCALE_NAME_USER_DEFAULT, DATE_SHORTDATE, &SystemTime, nullptr, lpDateBuffer, 0x100, nullptr);
+    ::GetTimeFormatEx(LOCALE_NAME_USER_DEFAULT, 0, &SystemTime, nullptr, lpTimeBuffer, 0x100);
+
+    TCHAR event[100]{}, comment[100]{};
+    UINT uEventResourceID = IDS_EVENT_UNKNOWN;
+
+    if ((dwEventID == 12) && (wEventCategory == 1))
+        uEventResourceID = IDS_EVENT_STARTUP;
+    else if ((dwEventID == 13) && (wEventCategory == 2))
+        uEventResourceID = IDS_EVENT_SHUTDOWN;
+    else if ((dwEventID == 42) && (wEventCategory == 64))
+        uEventResourceID = IDS_EVENT_HIBERNATE;
+    else if ((dwEventID == 107) && (wEventCategory == 102))
+        uEventResourceID = IDS_EVENT_RESUME; // Timetstamp can be inaccurate
+    else if ((dwEventID == 506) && (wEventCategory == 157))
+        uEventResourceID = IDS_EVENT_SLEEP;
+    else if ((dwEventID == 507) && (wEventCategory == 158))
+        uEventResourceID = IDS_EVENT_WAKEUP; // Timetstamp can be inaccurate
+
+    i18n.LoadString(uEventResourceID, event, 100);
+
+    if (dwLastTimestamp)
+    {
+        if (dwTimestamp >= dwLastTimestamp)
+        {
+            TCHAR lpPriorState[100];
+            DWORD duration = dwTimestamp - dwLastTimestamp;
+            DWORD days = duration / 86400; duration %= 86400;
+            DWORD hours = duration / 3600; duration %= 3600;
+            DWORD minutes = duration / 60; duration %= 60;
+            DWORD seconds = duration;
+
+            if ((uLastEventResourceID == IDS_EVENT_STARTUP) || (uLastEventResourceID == IDS_EVENT_WAKEUP) || (uLastEventResourceID == IDS_EVENT_RESUME))
+                i18n.LoadString(IDS_UPTIME, lpPriorState, 100);
+            else
+                i18n.LoadString(IDS_DOWNTIME, lpPriorState, 100);
+
+            i18n.ProcessMessageToBuffer(comment, 100, IDS_PRIOR_EVENT, lpPriorState, days, hours, minutes, seconds);
+        }
+        else
+        {
+            i18n.LoadString(IDS_INVALID_ORDER, comment, 100);
+        }
+    }
+
+    i18n.ProcessMessage(IDS_LIST_ENTRY, lpDateBuffer, lpTimeBuffer, event, comment);
+
+    dwLastTimestamp = dwTimestamp;
+    uLastEventResourceID = uEventResourceID;
+
+    return true;
+}
+
+
+static int ListAllEvents(LPCTSTR lpRemoteHost)
+{
+    DWORD dwComputerNameSize = 0;
+    LPTSTR lpComputerName = nullptr;
+
+    if (lpRemoteHost)
+        i18n.ProcessMessage(IDS_UPTIME_REPORT, lpRemoteHost);
+    else
+    {
+        ::GetComputerName(lpComputerName, &dwComputerNameSize);
+        if (lpComputerName)
+        {
+            lpComputerName = new TCHAR[dwComputerNameSize +2];
+            lpComputerName[0] = '\\';
+            lpComputerName[1] = '\\';
+            ::GetComputerName(lpComputerName + 2, &dwComputerNameSize);
+            i18n.ProcessMessage(IDS_UPTIME_REPORT, lpComputerName);
+            delete[] lpComputerName;
+        }
+    }
+
+    putchar('\n');
+//TODO: Get OS version or drop code
+//    i18n.ProcessMessage(IDS_CURRENT_OS, _T(""));
+
+//TODO: This is local time. Check if NetRemoteTOD should be used instead
+    DYNAMIC_TIME_ZONE_INFORMATION TimeZoneInformation;
+    DWORD rc = ::GetDynamicTimeZoneInformation(&TimeZoneInformation);
+    if (rc == 1)
+        i18n.ProcessMessage(IDS_TIME_ZONE, TimeZoneInformation.StandardName);
+    else if (rc == 2)
+        i18n.ProcessMessage(IDS_TIME_ZONE, TimeZoneInformation.DaylightName);
+    putchar('\n');
+
+    SYSTEMTIME SystemTime;
+    ::GetLocalTime(&SystemTime);
+    ::GetDateFormatEx(LOCALE_NAME_USER_DEFAULT, DATE_SHORTDATE, &SystemTime, nullptr, lpDateBuffer, 0x100, nullptr);
+    ::GetTimeFormatEx(LOCALE_NAME_USER_DEFAULT, 0, &SystemTime, nullptr, lpTimeBuffer, 0x100);
+    i18n.ProcessMessage(IDS_EXECUTION_TIMESTAMP, lpDateBuffer, lpTimeBuffer);
+    putchar('\n');
+
+
+    RetrieveAllEvents(ListAllCallback, lpRemoteHost);
 
     return 0;
 }
+
 
 int main(int argc, char* argv[])
 {
@@ -127,14 +209,16 @@ int main(int argc, char* argv[])
 #if 0
     DWORD langCount = 1;
     const WCHAR lang[] = { L"en-US\0" };
-    SetThreadPreferredUILanguages(MUI_LANGUAGE_NAME, lang, &langCount);
+    ::SetThreadPreferredUILanguages(MUI_LANGUAGE_NAME, lang, &langCount);
 #endif
 
     i18n.Init(&MessageCallback);
     bool DoList = false;
     bool DoHelp = false;
     bool DoAbsolute = false;
-    char* RemoteHost = nullptr;
+    char* HostArg = nullptr;
+    LPTSTR RemoteHost = nullptr;
+    int rc = 0;
 
 
     for (int cmdidx = 1; cmdidx < argc; cmdidx++)
@@ -162,8 +246,8 @@ int main(int argc, char* argv[])
         }
         else // argument
         {
-            if (!RemoteHost)
-                RemoteHost = argv[cmdidx];
+            if (!HostArg)
+                HostArg = argv[cmdidx];
             else // We only support one remote host
             {
                 DoHelp = true;
@@ -174,18 +258,33 @@ int main(int argc, char* argv[])
     if (DoList && DoAbsolute)
         DoHelp = true;
 
+#ifdef UNICODE
+    if (HostArg)
+    {
+        int size = (int) strlen(HostArg) + 1;
+        RemoteHost = new _TCHAR[size];
+        ::MultiByteToWideChar(CP_ACP, 0, HostArg, -1, RemoteHost, size);
+    }
+#else
+    RemoteHost = HostArg;
+#endif
+
     if (DoHelp)
     {
         HowTo();
     }
     else if (DoList)
     {
-        ListAllEvents();
+        rc = ListAllEvents(RemoteHost);
     }
     else
     {
-        LastStartup(DoAbsolute);
+        rc = LastStartup(RemoteHost, DoAbsolute);
     }
-    return 0;
+
+    if (RemoteHost)
+        delete[] RemoteHost;
+
+    return rc;
 }
 

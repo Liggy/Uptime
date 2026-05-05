@@ -1,11 +1,13 @@
 #include "pch.h"
 #include "UptimeInternal.h"
 
+
 UPTIME_DATA::UPTIME_DATA()
 {
-	ComputerName = nullptr;
+	lpComputerName = nullptr;
 	lpBuffer = nullptr;
 	dwBufferSize = 0;
+	dwEventFilter = -1;
 
 	hEventLog = nullptr;
 	lpBufferCurrent = nullptr;
@@ -15,8 +17,8 @@ UPTIME_DATA::UPTIME_DATA()
 
 UPTIME_DATA::~UPTIME_DATA()
 {
-	if (ComputerName)
-		delete[] ComputerName;
+	if (lpComputerName)
+		delete[] lpComputerName;
 
 	if (lpBuffer)
 		free(lpBuffer);
@@ -25,26 +27,6 @@ UPTIME_DATA::~UPTIME_DATA()
 		::CloseEventLog(hEventLog);
 }
 
-bool UPTIME_DATA::GetLocalHostname()
-{
-	DWORD ComputerNameSize = 0;
-	bool rc = false;
-
-	if (ComputerName)
-	{
-		delete[] ComputerName;
-		ComputerName = nullptr;
-	}
-
-	::GetComputerName(ComputerName, &ComputerNameSize);
-	if (ComputerNameSize)
-	{
-		ComputerName = new TCHAR[ComputerNameSize];
-		rc = ::GetComputerName(ComputerName, &ComputerNameSize);
-	}
-
-	return rc;
-}
 
 bool UPTIME_DATA::GetEventRecord()
 {
@@ -82,13 +64,15 @@ bool UPTIME_DATA::GetEventRecord()
 }
 
 
-bool UPTIME_DATA::OpenEventLog(bool bReadBackwards)
+bool UPTIME_DATA::OpenEventLog(bool bReadBackwards, LPCTSTR lpRemoteHost, DWORD dwFilter)
 {
 	if (hEventLog)
 		::CloseEventLog(hEventLog);
 
 	lpBufferCurrent = nullptr;
-	hEventLog = ::OpenEventLog(ComputerName, _T("System"));
+
+// API currently fails when RemoteHost is set and code is compiled as MBCS instead of Unicode
+	hEventLog = ::OpenEventLog(lpRemoteHost, _T("System"));
 
 	if (!hEventLog)
 		return false;
@@ -102,9 +86,11 @@ bool UPTIME_DATA::OpenEventLog(bool bReadBackwards)
 	}
 
 	bDirectionBackwards = bReadBackwards;
+	dwEventFilter = dwFilter;
 
 	return true;
 }
+
 
 bool UPTIME_DATA::GetNextEvent()
 {
@@ -115,26 +101,36 @@ bool UPTIME_DATA::GetNextEvent()
 		lpEventLogRecord=(PEVENTLOGRECORD) lpBufferCurrent;
 		/*
 		EventType == EVENTLOG_INFORMATION_TYPE
+		EventID:EventCategory -> Event
+		12:1    -> EVENT_ID_STARTUP
+		507:158 -> EVENT_ID_WAKEUP
+		107:102 -> EVENT_ID_RESUME
+		13:2    -> EVENT_ID_SHUTDOWN
+		506:157 -> EVENT_ID_SLEEP
+		42:64   -> EVENT_ID_HIBERNATE
+
+		EventType == EVENTLOG_ERROR_TYPE
 		EventID:
-		12->Start EVENT_ID_STARTUP EventCategory = 1
-		13->Shutdown EVENT_ID_SHUTDOWN, Category = 2
-		42->Standby EVENT_ID_STANDBY, Category = 64
-		107->WakeUp EVENT_ID_WAKEUP, Category = 102
+		6008->Unexpected Shutdown EVENT_ID_UNEXPECTED, Category = None - occurs after startup event
 		*/
 
-		if (
-			((lpEventLogRecord->EventID == 12) && (lpEventLogRecord->EventCategory == 1))
-		 || ((lpEventLogRecord->EventID == 13) && (lpEventLogRecord->EventCategory == 2))
-		 || ((lpEventLogRecord->EventID == 42) && (lpEventLogRecord->EventCategory == 64))
-		 || ((lpEventLogRecord->EventID == 107) && (lpEventLogRecord->EventCategory == 102))
-		   )
-		{
+		if ((this->dwEventFilter & EVENT_ID_STARTUP) && (lpEventLogRecord->EventID == 12) && (lpEventLogRecord->EventCategory == 1))
 			return true;
-		}
+		if ((this->dwEventFilter & EVENT_ID_WAKEUP) && (lpEventLogRecord->EventID == 507) && (lpEventLogRecord->EventCategory == 158))
+			return true;
+		if ((this->dwEventFilter & EVENT_ID_RESUME) && (lpEventLogRecord->EventID == 107) && (lpEventLogRecord->EventCategory == 102))
+			return true;
+		if ((this->dwEventFilter & EVENT_ID_SHUTDOWN) && (lpEventLogRecord->EventID == 13) && (lpEventLogRecord->EventCategory == 2))
+			return true;
+		if ((this->dwEventFilter & EVENT_ID_SLEEP) && (lpEventLogRecord->EventID == 506) && (lpEventLogRecord->EventCategory == 157))
+			return true;
+		if ((this->dwEventFilter & EVENT_ID_HIBERNATE) && (lpEventLogRecord->EventID == 42) && (lpEventLogRecord->EventCategory == 64))
+			return true;
 	}
 
 	return false;
 }
+
 
 const LPBYTE UPTIME_DATA::GetEventDetails() const
 {

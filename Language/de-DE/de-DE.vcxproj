@@ -309,7 +309,6 @@ del /f /q "$(TargetDir)$(Projectname).discard"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Common\resource.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>

@@ -140,9 +140,9 @@
     <PostBuildEvent>
       <Command>if not exist "$(TargetDir)$(ProjectName)" mkdir "$(TargetDir)$(ProjectName)"
 if exist "$(TargetDir)$(Projectname).discard" del /f /q "$(TargetDir)$(Projectname).discard"
-if exist "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui" del /f /q "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
-"muirct.exe" -q "$(ProjectDir)..\DoReverseMuiLoc.rcconfig" -x 0x0407 -g 0x0409 "$(TargetDir)$(TargetFileName)" "$(TargetDir)$(Projectname).discard" "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
-"muirct.exe" -c "$(TargetDir)$(Solutionname).dll" -e "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
+if exist "$(TargetDir)$(ProjectName)\$(Solutionname).exe.mui" del /f /q "$(TargetDir)$(ProjectName)\$(Solutionname).exe.mui"
+"muirct.exe" -q "$(ProjectDir)..\DoReverseMuiLoc.rcconfig" -x 0x0407 -g 0x0409 "$(TargetDir)$(TargetFileName)" "$(TargetDir)$(Projectname).discard" "$(TargetDir)$(ProjectName)\$(Solutionname).exe.mui"
+"muirct.exe" -c "$(TargetDir)$(Solutionname).exe" -e "$(TargetDir)$(ProjectName)\$(Solutionname).exe.mui"
 del /f /q "$(TargetDir)$(Projectname).discard"</Command>
       <Message>Split Language $(ProjectName)</Message>
     </PostBuildEvent>
@@ -173,9 +173,9 @@ del /f /q "$(TargetDir)$(Projectname).discard"</Command>
     <PostBuildEvent>
       <Command>if not exist "$(TargetDir)$(ProjectName)" mkdir "$(TargetDir)$(ProjectName)"
 if exist "$(TargetDir)$(Projectname).discard" del /f /q "$(TargetDir)$(Projectname).discard"
-if exist "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui" del /f /q "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
-"muirct.exe" -q "$(ProjectDir)..\DoReverseMuiLoc.rcconfig" -x 0x0407 -g 0x0409 "$(TargetDir)$(TargetFileName)" "$(TargetDir)$(Projectname).discard" "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
-"muirct.exe" -c "$(TargetDir)$(Solutionname).dll" -e "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
+if exist "$(TargetDir)$(ProjectName)\$(Solutionname).exe.mui" del /f /q "$(TargetDir)$(ProjectName)\$(Solutionname).exe.mui"
+"muirct.exe" -q "$(ProjectDir)..\DoReverseMuiLoc.rcconfig" -x 0x0407 -g 0x0409 "$(TargetDir)$(TargetFileName)" "$(TargetDir)$(Projectname).discard" "$(TargetDir)$(ProjectName)\$(Solutionname).exe.mui"
+"muirct.exe" -c "$(TargetDir)$(Solutionname).exe" -e "$(TargetDir)$(ProjectName)\$(Solutionname).exe.mui"
 del /f /q "$(TargetDir)$(Projectname).discard"</Command>
       <Message>Split Language $(ProjectName)</Message>
     </PostBuildEvent>
@@ -204,9 +204,9 @@ del /f /q "$(TargetDir)$(Projectname).discard"</Command>
     <PostBuildEvent>
       <Command>if not exist "$(TargetDir)$(ProjectName)" mkdir "$(TargetDir)$(ProjectName)"
 if exist "$(TargetDir)$(Projectname).discard" del /f /q "$(TargetDir)$(Projectname).discard"
-if exist "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui" del /f /q "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
-"muirct.exe" -q "$(ProjectDir)..\DoReverseMuiLoc.rcconfig" -x 0x0407 -g 0x0409 "$(TargetDir)$(TargetFileName)" "$(TargetDir)$(Projectname).discard" "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
-"muirct.exe" -c "$(TargetDir)$(Solutionname).dll" -e "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
+if exist "$(TargetDir)$(ProjectName)\$(Solutionname).exe.mui" del /f /q "$(TargetDir)$(ProjectName)\$(Solutionname).exe.mui"
+"muirct.exe" -q "$(ProjectDir)..\DoReverseMuiLoc.rcconfig" -x 0x0407 -g 0x0409 "$(TargetDir)$(TargetFileName)" "$(TargetDir)$(Projectname).discard" "$(TargetDir)$(ProjectName)\$(Solutionname).exe.mui"
+"muirct.exe" -c "$(TargetDir)$(Solutionname).exe" -e "$(TargetDir)$(ProjectName)\$(Solutionname).exe.mui"
 del /f /q "$(TargetDir)$(Projectname).discard"</Command>
       <Message>Split Language $(ProjectName)</Message>
     </PostBuildEvent>
@@ -235,9 +235,9 @@ del /f /q "$(TargetDir)$(Projectname).discard"</Command>
     <PostBuildEvent>
       <Command>if not exist "$(TargetDir)$(ProjectName)" mkdir "$(TargetDir)$(ProjectName)"
 if exist "$(TargetDir)$(Projectname).discard" del /f /q "$(TargetDir)$(Projectname).discard"
-if exist "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui" del /f /q "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
-"muirct.exe" -q "$(ProjectDir)..\DoReverseMuiLoc.rcconfig" -x 0x0407 -g 0x0409 "$(TargetDir)$(TargetFileName)" "$(TargetDir)$(Projectname).discard" "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
-"muirct.exe" -c "$(TargetDir)$(Solutionname).dll" -e "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
+if exist "$(TargetDir)$(ProjectName)\$(Solutionname).exe.mui" del /f /q "$(TargetDir)$(ProjectName)\$(Solutionname).exe.mui"
+"muirct.exe" -q "$(ProjectDir)..\DoReverseMuiLoc.rcconfig" -x 0x0407 -g 0x0409 "$(TargetDir)$(TargetFileName)" "$(TargetDir)$(Projectname).discard" "$(TargetDir)$(ProjectName)\$(Solutionname).exe.mui"
+"muirct.exe" -c "$(TargetDir)$(Solutionname).exe" -e "$(TargetDir)$(ProjectName)\$(Solutionname).exe.mui"
 del /f /q "$(TargetDir)$(Projectname).discard"</Command>
       <Message>Split Language $(ProjectName)</Message>
     </PostBuildEvent>
@@ -268,9 +268,9 @@ del /f /q "$(TargetDir)$(Projectname).discard"</Command>
     <PostBuildEvent>
       <Command>if not exist "$(TargetDir)$(ProjectName)" mkdir "$(TargetDir)$(ProjectName)"
 if exist "$(TargetDir)$(Projectname).discard" del /f /q "$(TargetDir)$(Projectname).discard"
-if exist "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui" del /f /q "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
-"muirct.exe" -q "$(ProjectDir)..\DoReverseMuiLoc.rcconfig" -x 0x0407 -g 0x0409 "$(TargetDir)$(TargetFileName)" "$(TargetDir)$(Projectname).discard" "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
-"muirct.exe" -c "$(TargetDir)$(Solutionname).dll" -e "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
+if exist "$(TargetDir)$(ProjectName)\$(Solutionname).exe.mui" del /f /q "$(TargetDir)$(ProjectName)\$(Solutionname).exe.mui"
+"muirct.exe" -q "$(ProjectDir)..\DoReverseMuiLoc.rcconfig" -x 0x0407 -g 0x0409 "$(TargetDir)$(TargetFileName)" "$(TargetDir)$(Projectname).discard" "$(TargetDir)$(ProjectName)\$(Solutionname).exe.mui"
+"muirct.exe" -c "$(TargetDir)$(Solutionname).exe" -e "$(TargetDir)$(ProjectName)\$(Solutionname).exe.mui"
 del /f /q "$(TargetDir)$(Projectname).discard"</Command>
       <Message>Split Language $(ProjectName)</Message>
     </PostBuildEvent>
@@ -301,9 +301,9 @@ del /f /q "$(TargetDir)$(Projectname).discard"</Command>
     <PostBuildEvent>
       <Command>if not exist "$(TargetDir)$(ProjectName)" mkdir "$(TargetDir)$(ProjectName)"
 if exist "$(TargetDir)$(Projectname).discard" del /f /q "$(TargetDir)$(Projectname).discard"
-if exist "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui" del /f /q "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
-"muirct.exe" -q "$(ProjectDir)..\DoReverseMuiLoc.rcconfig" -x 0x0407 -g 0x0409 "$(TargetDir)$(TargetFileName)" "$(TargetDir)$(Projectname).discard" "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
-"muirct.exe" -c "$(TargetDir)$(Solutionname).dll" -e "$(TargetDir)$(ProjectName)\$(Solutionname).dll.mui"
+if exist "$(TargetDir)$(ProjectName)\$(Solutionname).exe.mui" del /f /q "$(TargetDir)$(ProjectName)\$(Solutionname).exe.mui"
+"muirct.exe" -q "$(ProjectDir)..\DoReverseMuiLoc.rcconfig" -x 0x0407 -g 0x0409 "$(TargetDir)$(TargetFileName)" "$(TargetDir)$(Projectname).discard" "$(TargetDir)$(ProjectName)\$(Solutionname).exe.mui"
+"muirct.exe" -c "$(TargetDir)$(Solutionname).exe" -e "$(TargetDir)$(ProjectName)\$(Solutionname).exe.mui"
 del /f /q "$(TargetDir)$(Projectname).discard"</Command>
       <Message>Split Language $(ProjectName)</Message>
     </PostBuildEvent>

@@ -24,7 +24,10 @@ I18N::~I18N()
 
 void I18N::Init(i18nCallbackPrototype cbOutput)
 {
-	hResFile = ::LoadLibraryEx(_T("Uptime.dll"), NULL, LOAD_LIBRARY_AS_IMAGE_RESOURCE | LOAD_LIBRARY_AS_DATAFILE);
+	TCHAR self[MAX_PATH];
+	GetModuleFileName(NULL, self, MAX_PATH);
+
+	hResFile = ::LoadLibraryEx(self, NULL, LOAD_LIBRARY_AS_IMAGE_RESOURCE | LOAD_LIBRARY_AS_DATAFILE);
 	hCallback = cbOutput;
 }
 

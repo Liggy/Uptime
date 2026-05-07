@@ -97,6 +97,24 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+    <TargetName>$(ProjectName)-PreMUI</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+    <TargetName>$(ProjectName)-PreMUI</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <TargetName>$(ProjectName)-PreMUI</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <TargetName>$(ProjectName)-PreMUI</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <TargetName>$(ProjectName)-PreMUI</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <TargetName>$(ProjectName)-PreMUI</TargetName>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -111,6 +129,14 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>if not exist "$(TargetDir)en-US" mkdir "$(TargetDir)en-US"
+if exist "$(TargetDir)$(Solutionname).exe" del /f /q "$(TargetDir)$(Solutionname).exe"
+if exist "$(TargetDir)en-US\$(Solutionname).exe.mui" del /f /q "$(TargetDir)en-US\$(Solutionname).exe.mui"
+"muirct.exe" -q "$(ProjectDir)..\Language\DoReverseMuiLoc.rcconfig" -x 0x0409 -g 0x0409 "$(TargetDir)$(SolutionName)-PreMUI.exe" "$(TargetDir)$(Solutionname).exe" "$(TargetDir)en-US\$(Solutionname).exe.mui"
+</Command>
+      <Message>Prepare MUI generation</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -128,6 +154,14 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>if not exist "$(TargetDir)en-US" mkdir "$(TargetDir)en-US"
+if exist "$(TargetDir)$(Solutionname).exe" del /f /q "$(TargetDir)$(Solutionname).exe"
+if exist "$(TargetDir)en-US\$(Solutionname).exe.mui" del /f /q "$(TargetDir)en-US\$(Solutionname).exe.mui"
+"muirct.exe" -q "$(ProjectDir)..\Language\DoReverseMuiLoc.rcconfig" -x 0x0409 -g 0x0409 "$(TargetDir)$(SolutionName)-PreMUI.exe" "$(TargetDir)$(Solutionname).exe" "$(TargetDir)en-US\$(Solutionname).exe.mui"
+</Command>
+      <Message>Prepare MUI generation</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -143,6 +177,14 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>if not exist "$(TargetDir)en-US" mkdir "$(TargetDir)en-US"
+if exist "$(TargetDir)$(Solutionname).exe" del /f /q "$(TargetDir)$(Solutionname).exe"
+if exist "$(TargetDir)en-US\$(Solutionname).exe.mui" del /f /q "$(TargetDir)en-US\$(Solutionname).exe.mui"
+"muirct.exe" -q "$(ProjectDir)..\Language\DoReverseMuiLoc.rcconfig" -x 0x0409 -g 0x0409 "$(TargetDir)$(SolutionName)-PreMUI.exe" "$(TargetDir)$(Solutionname).exe" "$(TargetDir)en-US\$(Solutionname).exe.mui"
+</Command>
+      <Message>Prepare MUI generation</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <ClCompile>
@@ -158,6 +200,14 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>if not exist "$(TargetDir)en-US" mkdir "$(TargetDir)en-US"
+if exist "$(TargetDir)$(Solutionname).exe" del /f /q "$(TargetDir)$(Solutionname).exe"
+if exist "$(TargetDir)en-US\$(Solutionname).exe.mui" del /f /q "$(TargetDir)en-US\$(Solutionname).exe.mui"
+"muirct.exe" -q "$(ProjectDir)..\Language\DoReverseMuiLoc.rcconfig" -x 0x0409 -g 0x0409 "$(TargetDir)$(SolutionName)-PreMUI.exe" "$(TargetDir)$(Solutionname).exe" "$(TargetDir)en-US\$(Solutionname).exe.mui"
+</Command>
+      <Message>Prepare MUI generation</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -175,6 +225,14 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>if not exist "$(TargetDir)en-US" mkdir "$(TargetDir)en-US"
+if exist "$(TargetDir)$(Solutionname).exe" del /f /q "$(TargetDir)$(Solutionname).exe"
+if exist "$(TargetDir)en-US\$(Solutionname).exe.mui" del /f /q "$(TargetDir)en-US\$(Solutionname).exe.mui"
+"muirct.exe" -q "$(ProjectDir)..\Language\DoReverseMuiLoc.rcconfig" -x 0x0409 -g 0x0409 "$(TargetDir)$(SolutionName)-PreMUI.exe" "$(TargetDir)$(Solutionname).exe" "$(TargetDir)en-US\$(Solutionname).exe.mui"
+</Command>
+      <Message>Prepare MUI generation</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
     <ClCompile>
@@ -192,6 +250,14 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>if not exist "$(TargetDir)en-US" mkdir "$(TargetDir)en-US"
+if exist "$(TargetDir)$(Solutionname).exe" del /f /q "$(TargetDir)$(Solutionname).exe"
+if exist "$(TargetDir)en-US\$(Solutionname).exe.mui" del /f /q "$(TargetDir)en-US\$(Solutionname).exe.mui"
+"muirct.exe" -q "$(ProjectDir)..\Language\DoReverseMuiLoc.rcconfig" -x 0x0409 -g 0x0409 "$(TargetDir)$(SolutionName)-PreMUI.exe" "$(TargetDir)$(Solutionname).exe" "$(TargetDir)en-US\$(Solutionname).exe.mui"
+</Command>
+      <Message>Prepare MUI generation</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="I18N.cpp" />

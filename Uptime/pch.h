@@ -8,4 +8,4 @@
 #include <tchar.h>
 #include <iostream>
 
-#include "../Language/Neutral/resource.h"
+#include "resource.h"

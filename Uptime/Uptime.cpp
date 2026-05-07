@@ -154,7 +154,7 @@ static bool ListAllCallback(DWORD dwEventID, WORD wEventCategory, DWORD dwTimest
 }
 
 
-static int ListAllEvents(LPCTSTR lpRemoteHost)
+static int ListAllEvents(LPCTSTR lpRemoteHost, bool bHibernate)
 {
     DWORD dwComputerNameSize = 0;
     LPTSTR lpComputerName = nullptr;
@@ -196,7 +196,7 @@ static int ListAllEvents(LPCTSTR lpRemoteHost)
     putchar('\n');
 
 
-    RetrieveAllEvents(ListAllCallback, lpRemoteHost);
+    RetrieveAllEvents(ListAllCallback, bHibernate, lpRemoteHost);
 
     return 0;
 }
@@ -216,6 +216,7 @@ int main(int argc, char* argv[])
     bool DoList = false;
     bool DoHelp = false;
     bool DoAbsolute = false;
+    bool DoHibernate = false;
     char* HostArg = nullptr;
     LPTSTR RemoteHost = nullptr;
     int rc = 0;
@@ -238,6 +239,10 @@ int main(int argc, char* argv[])
             {
                 DoAbsolute = true;
             }
+            else if (!_stricmp(option, "h"))
+            {
+                DoHibernate = true;
+            }
             else
             {
                 DoHelp = true;
@@ -257,6 +262,8 @@ int main(int argc, char* argv[])
     }
     if (DoList && DoAbsolute)
         DoHelp = true;
+    if (!DoList && DoHibernate)
+        DoHelp = true;
 
 #ifdef UNICODE
     if (HostArg)
@@ -275,7 +282,7 @@ int main(int argc, char* argv[])
     }
     else if (DoList)
     {
-        rc = ListAllEvents(RemoteHost);
+        rc = ListAllEvents(RemoteHost, DoHibernate);
     }
     else
     {

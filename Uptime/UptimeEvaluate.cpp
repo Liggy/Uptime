@@ -24,13 +24,13 @@ DWORD RetrieveUptime(LPCTSTR lpHostarg)
 }
 
 
-DWORD RetrieveAllEvents(UptimeListPrototype cbCallbackFunction, LPCTSTR lpHostarg)
+DWORD RetrieveAllEvents(UptimeListPrototype cbCallbackFunction, bool bHibernate, LPCTSTR lpHostarg)
 {
     UPTIME_DATA UptimeData;
     PEVENTLOGRECORD hEvent;
     
 //TODO: restrict events based on command line arguments
-    if (UptimeData.OpenEventLog(false, lpHostarg))
+    if (UptimeData.OpenEventLog(false, lpHostarg, bHibernate?-1:EVENT_ID_STARTUP | EVENT_ID_SHUTDOWN))
     {
         while (UptimeData.GetNextEvent())
         {

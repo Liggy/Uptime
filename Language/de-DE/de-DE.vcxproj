@@ -130,6 +130,9 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <NoEntryPoint>true</NoEntryPoint>
+      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
+      <LinkTimeCodeGenerationObjectFile />
     </Link>
     <CustomBuildStep>
       <Command>D:\Code\Uptime\MUIGen\ExtractMUI.cmd $(OutDir)</Command>
@@ -161,8 +164,11 @@ del /f /q "$(TargetDir)$(Projectname).discard"</Command>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <NoEntryPoint>true</NoEntryPoint>
+      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
+      <LinkTimeCodeGenerationObjectFile />
     </Link>
     <CustomBuildStep>
       <Command>D:\Code\Uptime\MUIGen\ExtractMUI.cmd $(OutDir)</Command>
@@ -194,6 +200,9 @@ del /f /q "$(TargetDir)$(Projectname).discard"</Command>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <NoEntryPoint>true</NoEntryPoint>
+      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
+      <LinkTimeCodeGenerationObjectFile />
     </Link>
     <CustomBuildStep>
       <Command>D:\Code\Uptime\MUIGen\ExtractMUI.cmd $(OutDir)</Command>
@@ -225,6 +234,9 @@ del /f /q "$(TargetDir)$(Projectname).discard"</Command>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <NoEntryPoint>true</NoEntryPoint>
+      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
+      <LinkTimeCodeGenerationObjectFile />
     </Link>
     <CustomBuildStep>
       <Command>D:\Code\Uptime\MUIGen\ExtractMUI.cmd $(OutDir)</Command>
@@ -256,8 +268,11 @@ del /f /q "$(TargetDir)$(Projectname).discard"</Command>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <NoEntryPoint>true</NoEntryPoint>
+      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
+      <LinkTimeCodeGenerationObjectFile />
     </Link>
     <CustomBuildStep>
       <Command>D:\Code\Uptime\MUIGen\ExtractMUI.cmd $(OutDir)</Command>
@@ -289,8 +304,11 @@ del /f /q "$(TargetDir)$(Projectname).discard"</Command>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <NoEntryPoint>true</NoEntryPoint>
+      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
+      <LinkTimeCodeGenerationObjectFile />
     </Link>
     <CustomBuildStep>
       <Command>D:\Code\Uptime\MUIGen\ExtractMUI.cmd $(OutDir)</Command>
@@ -309,19 +327,7 @@ del /f /q "$(TargetDir)$(Projectname).discard"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="pch.h" />
     <ClInclude Include="resource.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="dllmain.cpp" />
-    <ClCompile Include="pch.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Create</PrecompiledHeader>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="de-DE.rc" />
